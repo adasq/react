@@ -65,7 +65,6 @@ import {
 } from './ReactFiberWorkLoop.old';
 
 import invariant from 'shared/invariant';
-import isValidElementType from 'shared/isValidElementType';
 import getComponentName from 'shared/getComponentName';
 import is from 'shared/objectIs';
 import {markWorkInProgressReceivedUpdate} from './ReactFiberBeginWork.old';
