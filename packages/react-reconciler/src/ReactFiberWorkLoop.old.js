@@ -1640,6 +1640,7 @@ function workLoopConcurrent() {
 }
 
 function performUnitOfWork(unitOfWork: Fiber): void {
+  console.log('performUnitOfWork', unitOfWork.type)
   // The current, flushed, state of this fiber is the alternate. Ideally
   // nothing should rely on this, but relying on it here means that we don't
   // need an additional field on the work in progress.
@@ -1668,6 +1669,7 @@ function performUnitOfWork(unitOfWork: Fiber): void {
 }
 
 function completeUnitOfWork(unitOfWork: Fiber): void {
+  console.log('completeUnitOfWork', unitOfWork.type)
   // Attempt to complete the current unit of work, then move to the next
   // sibling. If there are no more siblings, return to the parent fiber.
   let completedWork = unitOfWork;
@@ -3120,6 +3122,7 @@ let beginWork;
 if (__DEV__ && replayFailedUnitOfWorkWithInvokeGuardedCallback) {
   const dummyFiber = null;
   beginWork = (current, unitOfWork, lanes) => {
+    console.log('beginWork', unitOfWork.type)
     // If a component throws an error, we replay it again in a synchronously
     // dispatched event, so that the debugger will treat it as an uncaught
     // error See ReactErrorUtils for more information.

@@ -127,6 +127,37 @@ describe('ReactFiberFundamental', () => {
       initReactDOM();
     });
 
+    it('should print how does the virtual DOM is being build', () => {
+      const Loader = () => (<div className="loader">Loading...</div>)
+      const Product = () => (<article>Product Details</article>)
+      const Button = ({ onClick, title }) => (<button onClick={onClick}>{title}</button>);
+
+      function Content() {
+        const buy = () => { /* ... */ };
+        const isLoading = true;
+        return <>
+          { isLoading && <Loader /> }
+          <Product></Product>
+          <Button onClick={buy} title="Buy product"></Button>
+        </>
+      }
+
+      const Footer = () => (<ul>
+        <li>About Us</li>
+        <li>FAQ</li>
+      </ul>)
+
+      const App = ({ layout }) => {
+        return <>
+          <Content></Content>
+          <Footer />
+        </>
+      }
+
+      const wrap = document.createElement('div');
+      ReactDOM.render(<App />, wrap);
+    });
+
     // @gate experimental
     it('should render a simple fundamental component with a single child', () => {
       const FundamentalComponent = createReactFundamentalComponent({
